@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+    <h3>All Listings</h3>
+    <!-- Uncomment the form below if you want to allow users to create new listings -->
+    <!-- <form method="GET" action="/listings/new">
+        <button>Create New Listing</button>
+    </form> -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for (let listing of allListings) { %>
+        <div class="col mb-4">
+            <a href="/listings/<%= listing.id %>" class="listing-link text-decoration-none">
+                <div class="card">
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>" style="height: 20rem; object-fit: cover;">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listing.title %></b><br />
+                            &#8377; 
+                            <% if (listing.price) { %>
+                                <%= listing.price.toLocaleString('en-IN') %>
+                            <% } else { %>
+                                Price not available
+                            <% } %> / Night
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% } %>
+    </div>
+</body>
